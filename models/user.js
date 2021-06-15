@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "userId",
         as: "going",
       });
+
+      user.hasMany(models.commentEvents);
     }
   }
   user.init(
