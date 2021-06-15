@@ -6,6 +6,12 @@ module.exports = (sequelize, DataTypes) => {
       user.hasMany(models.event, {
         as: "owner",
       });
+
+      user.belongsToMany(models.event, {
+        through: "attendanceEvents",
+        foreignKey: "userId",
+        as: "going",
+      });
     }
   }
   user.init(
