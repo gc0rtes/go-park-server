@@ -4,9 +4,14 @@ module.exports = (sequelize, DataTypes) => {
   class event extends Model {
     static associate(models) {
       event.belongsTo(models.park);
+
       event.belongsToMany(models.tag, {
         through: "tagEvents",
         foreignKey: "eventId",
+      });
+
+      event.belongsTo(models.user, {
+        as: "owner",
       });
     }
   }
