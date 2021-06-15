@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("parks", {
+    await queryInterface.createTable("events", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,11 +9,27 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       imageUrl: {
-        type: Sequelize.STRING,
-      },
-      name: {
         allowNull: false,
         type: Sequelize.STRING,
+      },
+      title: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      description: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      phone: {
+        type: Sequelize.INTEGER,
+      },
+      startDate: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      endDate: {
+        allowNull: false,
+        type: Sequelize.DATE,
       },
       lat: {
         allowNull: false,
@@ -23,11 +39,24 @@ module.exports = {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
-      cityId: {
+      isCanceled: {
+        type: Sequelize.BOOLEAN,
+      },
+      parkId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: "cities",
+          model: "parks",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+      },
+      userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "users",
           key: "id",
         },
         onUpdate: "CASCADE",
@@ -44,6 +73,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("parks");
+    await queryInterface.dropTable("events");
   },
 };

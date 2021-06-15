@@ -1,33 +1,28 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("parks", {
+    await queryInterface.createTable("tagEvents", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      imageUrl: {
-        type: Sequelize.STRING,
-      },
-      name: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      lat: {
-        allowNull: false,
-        type: Sequelize.FLOAT,
-      },
-      lng: {
-        allowNull: false,
-        type: Sequelize.FLOAT,
-      },
-      cityId: {
+      tagId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: "cities",
+          model: "tags",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+      },
+      eventId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "events",
           key: "id",
         },
         onUpdate: "CASCADE",
@@ -44,6 +39,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("parks");
+    await queryInterface.dropTable("tagEvents");
   },
 };
