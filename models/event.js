@@ -5,19 +5,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       event.belongsTo(models.park);
 
-      event.belongsToMany(models.tag, {
-        through: "tagEvents",
-        foreignKey: "eventId",
-      });
+      event.belongsToMany(models.tag, { through: "tagEvents" });
 
-      event.belongsTo(models.user, {
-        as: "owner",
-      });
+      event.belongsTo(models.user, { as: "owner" });
 
       event.belongsToMany(models.user, {
-        through: "attendanceEvents",
-        foreignKey: "eventId",
         as: "going",
+        through: "attendanceEvents",
       });
 
       event.hasMany(models.commentEvent);
