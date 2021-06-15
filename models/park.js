@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class park extends Model {
     static associate(models) {
       park.belongsTo(models.city);
+      park.hasMany(models.event);
     }
   }
   park.init(
