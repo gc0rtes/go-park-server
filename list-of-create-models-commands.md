@@ -10,3 +10,7 @@ npx sequelize-cli model:generate --name event --attributes imageUrl:string,title
 
 npx sequelize-cli model:generate --name tagEvent --attributes tagId:integer,eventId:integer
 
+npx sequelize-cli model:generate --name commentEvent --attributes comment:string,userId:integer,eventId:integer
+
+npx sequelize-cli model:generate --name attendanceEvent --attributes userId:integer,eventId:integer
+
