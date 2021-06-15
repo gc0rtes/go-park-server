@@ -11,22 +11,22 @@ module.exports = {
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        eferences: {
+        references: {
           model: "users",
           key: "id",
         },
         onUpdate: "CASCADE",
-        onDelete: "SET NULL",
+        onDelete: "CASCADE",
       },
       eventId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        eferences: {
+        references: {
           model: "events",
           key: "id",
         },
         onUpdate: "CASCADE",
-        onDelete: "SET NULL",
+        onDelete: "CASCADE",
       },
       createdAt: {
         allowNull: false,
