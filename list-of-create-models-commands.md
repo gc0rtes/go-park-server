@@ -4,3 +4,4 @@ npx sequelize-cli model:generate --name park --attributes imageUrl:string,name:s
 
 npx sequelize-cli model:generate --name user --attributes imageUrl:string,name:string,email:string,password:string
 
+npx sequelize-cli model:generate --name tag --attributes name:string
