@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
       event.belongsTo(models.user, { as: "owner" });
 
       event.belongsToMany(models.user, {
-        as: "going",
         through: "attendanceEvents",
+        as: "going",
       });
 
       event.hasMany(models.commentEvent);

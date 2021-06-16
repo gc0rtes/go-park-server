@@ -6,11 +6,11 @@ module.exports = (sequelize, DataTypes) => {
       user.hasMany(models.event, { as: "owner" });
 
       user.belongsToMany(models.event, {
-        as: "going",
         through: "attendanceEvents",
+        as: "going",
       });
 
-      user.hasMany(models.commentEvents);
+      user.hasMany(models.commentEvent);
     }
   }
   user.init(
