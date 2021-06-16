@@ -25,6 +25,26 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          imageUrl:
+            "http://d3e1m60ptf1oym.cloudfront.net/6914cefd-543f-4393-b5b2-6644d76d79ed/301573_xgaplus.jpg",
+          name: "Noorderpark",
+          lat: 52.394852,
+          lng: 4.919604,
+          cityId: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          imageUrl:
+            "https://www.iamsterdam.com/media/nature-and-parks/westerpark-cecile-obertop.jpg?w=977",
+          name: "Westerpark",
+          lat: 52.386702,
+          lng: 4.876364,
+          cityId: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
