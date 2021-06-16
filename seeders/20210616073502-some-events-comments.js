@@ -40,6 +40,20 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          comment: "user 2 wrote some comment on event 4",
+          userId: 2,
+          eventId: 4,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          comment: "user 2 wrote some comment on event 5",
+          userId: 2,
+          eventId: 5,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );

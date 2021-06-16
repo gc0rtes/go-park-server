@@ -41,6 +41,24 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          tagId: 1,
+          eventId: 4,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          tagId: 8,
+          eventId: 5,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          tagId: 7,
+          eventId: 5,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
