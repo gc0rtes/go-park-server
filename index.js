@@ -3,7 +3,7 @@ const loggerMiddleWare = require("morgan");
 const corsMiddleWare = require("cors");
 const { PORT } = require("./config/constants");
 const authRouter = require("./routers/auth");
-// add routher to events
+const eventsRouter = require("./routers/events");
 
 /**
  * It is advisable to configure your middleware before configuring the routes
@@ -39,6 +39,7 @@ app.use(bodyParserMiddleWare);
 app.use(corsMiddleWare());
 
 app.use("/", authRouter);
+app.use("/events", eventsRouter);
 
 // Listen for connections on specified port (default is port 4000)
 
