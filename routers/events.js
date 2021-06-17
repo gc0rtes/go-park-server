@@ -210,6 +210,45 @@ router.post("/:id/going", authMiddleware, async (req, res) => {
   return res.status(201).send({ message: "attendence created", attendence });
 });
 
-//PATCH going to an Event
+//DESTROY going to an Event
+router.delete("/:id/going", authMiddleware, async (req, res) => {
+  console.log("I got a request to DELETE a user is going");
+
+  const userId = req.user.id;
+  console.log("what is userId?", userId);
+
+  //check if event is a number
+  if (isNaN(parseInt(req.params.id))) {
+    return res.status(400).send({ message: "Event id is not a number" });
+  }
+
+  // store eventId
+  const eventId = parseInt(req.params.id);
+  console.log("what is eventId?", eventId);
+
+  const checkIfEventExist = await Event.findByPk(eventId);
+
+  //check if event exist
+  if (checkIfEventExist === null) {
+    return res.status(404).send({ message: "This event does not exist." });
+  }
+
+  //find the user x event relation to destroy
+  const userEvent = await AttendanceEvent.findAll({
+    where: { userId: userId, eventId: eventId },
+  });
+  console.log("what is userEvent", userEvent[0]);
+
+  if (userEvent.length === 0) {
+    return res
+      .status(404)
+      .send({ message: "User x Event not found to delete" });
+  }
+
+  // await userEvent.attendanceEvent.dataValues.destroy();
+  await userEvent[0].destroy();
+
+  return res.status(200).send({ message: "sucessfull deleted" });
+});
 
 module.exports = router;
