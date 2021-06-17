@@ -18,6 +18,7 @@ const app = express();
  * morgan: *
  * simple logging middleware so you can see
  * what happened to your request
+ * github: https://github.com/expressjs/morgan
  * */
 app.use(loggerMiddleWare("dev"));
 
@@ -38,6 +39,8 @@ app.use(bodyParserMiddleWare);
 app.use(corsMiddleWare());
 
 app.use("/", authRouter);
+
+// Listen for connections on specified port (default is port 4000)
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
