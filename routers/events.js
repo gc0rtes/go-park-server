@@ -134,4 +134,40 @@ router.post("/", authMiddleware, async (req, res) => {
   return res.status(201).send({ message: "Event created!", event });
 });
 
+//POST a comment on a Event
+router.post("/:id", authMiddleware, async (req, res) => {
+  console.log("***I got a request to POST a comment");
+
+  const userId = req.user.id;
+  console.log("what is userId?", userId);
+
+  if (isNaN(parseInt(req.params.id))) {
+    return res.status(400).send({ message: "Event id is not a number" });
+  }
+  const eventId = parseInt(req.params.id);
+  console.log("what is eventId?", eventId);
+
+  const checkIfEventExist = await Event.findByPk(eventId);
+
+  if (checkIfEventExist === null) {
+    return res.status(404).send({ message: "This event does not exist." });
+  }
+
+  const { comment } = req.body;
+
+  if (!comment) {
+    return res
+      .status(400)
+      .send({ message: "Say something nice on your comment." });
+  }
+
+  const newComment = await CommentEvent.create({
+    comment, // from the body
+    userId, // from the middleWare
+    eventId, //from the params
+  });
+
+  return res.status(201).send({ message: "Comment created", newComment });
+});
+
 module.exports = router;
