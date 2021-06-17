@@ -3,6 +3,7 @@ const Event = require("../models").event;
 const Park = require("../models").park;
 const City = require("../models").city;
 const CommentEvent = require("../models").commentEvent;
+const AttendanceEvent = require("../models").attendanceEvent;
 const User = require("../models").user;
 
 const authMiddleware = require("../auth/middleware");
@@ -136,16 +137,16 @@ router.post("/", authMiddleware, async (req, res) => {
 
 //POST a comment on a Event
 router.post("/:id", authMiddleware, async (req, res) => {
-  console.log("***I got a request to POST a comment");
+  // console.log("***I got a request to POST a comment");
 
   const userId = req.user.id;
-  console.log("what is userId?", userId);
+  // console.log("what is userId?", userId);
 
   if (isNaN(parseInt(req.params.id))) {
     return res.status(400).send({ message: "Event id is not a number" });
   }
   const eventId = parseInt(req.params.id);
-  console.log("what is eventId?", eventId);
+  // console.log("what is eventId?", eventId);
 
   const checkIfEventExist = await Event.findByPk(eventId);
 
@@ -169,5 +170,46 @@ router.post("/:id", authMiddleware, async (req, res) => {
 
   return res.status(201).send({ message: "Comment created", newComment });
 });
+
+//POST going to an Event
+router.post("/:id/going", authMiddleware, async (req, res) => {
+  // console.log("***I got a request to POST a going to Event");
+
+  const userId = req.user.id;
+  // console.log("what is userId?", userId);
+
+  if (isNaN(parseInt(req.params.id))) {
+    return res.status(400).send({ message: "Event id is not a number" });
+  }
+  const eventId = parseInt(req.params.id);
+  // console.log("what is eventId?", eventId);
+
+  const checkIfEventExist = await Event.findByPk(eventId);
+
+  if (checkIfEventExist === null) {
+    return res.status(404).send({ message: "This event does not exist." });
+  }
+
+  const userEventAlreadyGoing = await AttendanceEvent.findAll({
+    where: { userId: userId, eventId: eventId },
+  });
+  // console.log("what is userEventAlreadyGoing", userEventAlreadyGoing);
+
+  //A empty array [] and a full array [...] always return true
+  //So to check if user x event is already on table use "[array].length > 0"
+  if (userEventAlreadyGoing.length > 0) {
+    return res
+      .status(404)
+      .send({ message: "The user is already going to this event" });
+  }
+  const attendence = await AttendanceEvent.create({
+    userId, // from the middleWare
+    eventId, //from the params
+  });
+
+  return res.status(201).send({ message: "attendence created", attendence });
+});
+
+//PATCH going to an Event
 
 module.exports = router;
