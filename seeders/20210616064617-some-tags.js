@@ -26,7 +26,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          name: "art martial",
+          name: "artMartial",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
