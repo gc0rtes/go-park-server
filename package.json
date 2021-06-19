@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx nodemon .",
+    "restartDB": "npm run undo && npm run migrate && npm run seed",
+    "undo": "npx sequelize-cli db:migrate:undo:all",
+    "migrate": "npx sequelize-cli db:migrate",
+    "seed": "npx sequelize-cli db:seed:all",
+    "howTo": "echo \"To run script: $ npm run 'name' \" && exit 1"
   },
   "keywords": [],
   "author": "",
