@@ -11,6 +11,7 @@ const authMiddleware = require("../auth/middleware");
 
 //config to use moment.js
 const moment = require("moment");
+const range = moment().subtract(1, "days").toDate();
 
 //See https://sequelize.org/v5/manual/querying.html OPERATORS session
 const { Op } = require("sequelize");
@@ -20,10 +21,23 @@ const router = new Router();
 
 // GET all events
 router.get("/", async (req, res, next) => {
+  console.log("what ise new date", new Date());
   try {
     const events = await Event.findAll({
       where: {
-        startDate: { [Op.gt]: moment().subtract(1, "days").toDate() },
+        // find bettwen a range of period
+        [Op.or]: [
+          {
+            startDate: {
+              [Op.gte]: range,
+            },
+          },
+          {
+            endDate: {
+              [Op.gte]: range,
+            },
+          },
+        ],
       },
       order: [["startDate", "ASC"]],
       include: [
