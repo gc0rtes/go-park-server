@@ -29,7 +29,7 @@ router.get("/", async (req, res, next) => {
       ],
     });
 
-    res.status(200).send({ message: "ok", events });
+    res.status(200).send({ message: "A list of all events", events });
   } catch (e) {
     next(e);
   }
@@ -77,7 +77,7 @@ router.get("/:id", async (req, res, next) => {
       return res.status(404).send({ message: "event not found" });
     }
 
-    res.status(200).send({ message: "ok", event });
+    res.status(200).send({ message: "Event Details", event });
   } catch (e) {
     next(e);
   }
@@ -212,10 +212,10 @@ router.post("/:id/going", authMiddleware, async (req, res) => {
 
 //DESTROY going to an Event
 router.delete("/:id/going", authMiddleware, async (req, res) => {
-  console.log("I got a request to DELETE a user is going");
+  // console.log("I got a request to DELETE a user is going");
 
   const userId = req.user.id;
-  console.log("what is userId?", userId);
+  // console.log("what is userId?", userId);
 
   //check if event is a number
   if (isNaN(parseInt(req.params.id))) {
@@ -237,7 +237,7 @@ router.delete("/:id/going", authMiddleware, async (req, res) => {
   const userEvent = await AttendanceEvent.findAll({
     where: { userId: userId, eventId: eventId },
   });
-  console.log("what is userEvent", userEvent[0]);
+  // console.log("what is userEvent", userEvent[0]);
 
   if (userEvent.length === 0) {
     return res
