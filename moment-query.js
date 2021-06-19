@@ -11,20 +11,27 @@ For those of you looking for a lighter alternative, consider 'date-fns'. Date-fn
 
 const moment = require("moment");
 
+const startDate2 = "2021-06-19";
+const endDate = "2021-06-19";
+const myMoment = moment().format("YYYY-MM-DD");
+
+const compare2 = moment().subtract(1, "days").toDate();
+//console.log(compare2);
+
+const compare3 = moment().add(1, "days").toDate();
+console.log(compare3);
+
 //isSameOrBefore - Compare if myMoment is the same or BEFORE the event START date,
 //It will return true where myMoment is SAME or BEFORE the specific date (included)
 
-const startDate2 = "2021-06-19";
-const myMoment = moment().format("YYYY-MM-DD");
 //console.log(myMoment); // 2021-06-19
 const compare = moment(myMoment).isSameOrBefore(startDate2, "YYYY-MM-DD");
-console.log(compare); //true
+//console.log(compare); //true
 
 //isAfter - Compare if myMoment is the same or AFTER the event END date (not included),
 //It will return true where myMoment is AFTER the specific date (not included)
-const endDate = "2021-06-19";
 const compareEndDate = moment(myMoment).isAfter(endDate, "YYYY-MM-DD");
-console.log(compareEndDate);
+//console.log(compareEndDate);
 
 //To format the date
 const transform = moment(startDate2, "YYYY-MM-DD").format("ll");

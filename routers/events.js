@@ -4,16 +4,27 @@ const Park = require("../models").park;
 const City = require("../models").city;
 const CommentEvent = require("../models").commentEvent;
 const AttendanceEvent = require("../models").attendanceEvent;
+const Tag = require("../models").tag;
 const User = require("../models").user;
 
 const authMiddleware = require("../auth/middleware");
 
+//config to use moment.js
+const moment = require("moment");
+
+//See https://sequelize.org/v5/manual/querying.html OPERATORS session
+const { Op } = require("sequelize");
+
+//create new router
 const router = new Router();
 
 // GET all events
 router.get("/", async (req, res, next) => {
   try {
     const events = await Event.findAll({
+      where: {
+        startDate: { [Op.gt]: moment().subtract(1, "days").toDate() },
+      },
       order: [["startDate", "ASC"]],
       include: [
         {
@@ -25,6 +36,10 @@ router.get("/", async (req, res, next) => {
               attributes: ["name"],
             },
           ],
+        },
+        {
+          model: Tag,
+          attributes: ["name"],
         },
       ],
     });
@@ -40,7 +55,7 @@ router.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    console.log(id);
+    //console.log(id);
     if (isNaN(parseInt(id))) {
       return res.status(400).send({ message: "event id is not a number" });
     }
@@ -70,6 +85,10 @@ router.get("/:id", async (req, res, next) => {
           as: "owner",
           attributes: ["id", "name"],
         },
+        {
+          model: Tag,
+          attributes: ["name"],
+        },
       ],
     });
 
@@ -97,6 +116,7 @@ router.post("/", authMiddleware, async (req, res) => {
     phone,
     startDate,
     endDate,
+    startHour,
     lat,
     lng,
     parkId,
@@ -109,6 +129,7 @@ router.post("/", authMiddleware, async (req, res) => {
     !description ||
     !startDate ||
     !endDate ||
+    !startHour ||
     !lat ||
     !lng ||
     !parkId
@@ -127,6 +148,7 @@ router.post("/", authMiddleware, async (req, res) => {
     phone,
     startDate,
     endDate,
+    startHour,
     lat,
     lng,
     parkId,
@@ -224,7 +246,7 @@ router.delete("/:id/going", authMiddleware, async (req, res) => {
 
   // store eventId
   const eventId = parseInt(req.params.id);
-  console.log("what is eventId?", eventId);
+  //console.log("what is eventId?", eventId);
 
   const checkIfEventExist = await Event.findByPk(eventId);
 
