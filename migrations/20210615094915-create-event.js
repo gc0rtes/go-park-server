@@ -43,6 +43,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.FLOAT,
       },
+      tag: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
       isCanceled: {
         type: Sequelize.BOOLEAN,
       },

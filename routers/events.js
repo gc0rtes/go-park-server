@@ -51,10 +51,6 @@ router.get("/", async (req, res, next) => {
             },
           ],
         },
-        {
-          model: Tag,
-          attributes: ["name"],
-        },
       ],
     });
 
@@ -99,10 +95,6 @@ router.get("/:id", async (req, res, next) => {
           as: "owner",
           attributes: ["id", "name"],
         },
-        {
-          model: Tag,
-          attributes: ["name"],
-        },
       ],
     });
 
@@ -118,7 +110,8 @@ router.get("/:id", async (req, res, next) => {
 
 //POST an event
 router.post("/", authMiddleware, async (req, res) => {
-  // console.log("***I got a request to POST a new event!");
+  console.log("***I got a request to POST a new event!");
+
   // After checked by authMiddleware lets accept the request and get the userId from the authMiddleware
   const userId = req.user.id;
   // console.log("what is userId?", userId);
@@ -133,6 +126,7 @@ router.post("/", authMiddleware, async (req, res) => {
     startHour,
     lat,
     lng,
+    tag,
     parkId,
   } = req.body;
 
@@ -146,6 +140,7 @@ router.post("/", authMiddleware, async (req, res) => {
     !startHour ||
     !lat ||
     !lng ||
+    !tag ||
     !parkId
   ) {
     return res
@@ -165,6 +160,7 @@ router.post("/", authMiddleware, async (req, res) => {
     startHour,
     lat,
     lng,
+    tag,
     parkId,
     userId, //from authMiddleware
   });
@@ -206,6 +202,29 @@ router.post("/:id", authMiddleware, async (req, res) => {
 
   return res.status(201).send({ message: "Comment created", newComment });
 });
+
+// //POST a tag on a Event
+// router.post("/tag", authMiddleware, async (req, res) => {
+//   const { tagId } = req.body;
+
+//   if (isNaN(parseInt(req.params.id))) {
+//     return res.status(400).send({ message: "Event id is not a number" });
+//   }
+//   const eventId = parseInt(req.params.id);
+//   console.log("what is eventId?", eventId);
+
+//   const checkIfEventExist = await Event.findByPk(eventId);
+//   if (checkIfEventExist === null) {
+//     return res.status(404).send({ message: "This event does not exist." });
+//   }
+
+//   const tagEvents = await TagEvent.create({
+//     eventId, //from the params
+//     tagId, // from the body
+//   });
+
+//   return res.status(201).send({ message: "tag event created", tagEvents });
+// });
 
 //POST going to an Event
 router.post("/:id/going", authMiddleware, async (req, res) => {

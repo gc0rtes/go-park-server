@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       lat: { type: DataTypes.FLOAT, allowNull: false },
       lng: { type: DataTypes.FLOAT, allowNull: false },
       isCanceled: { type: DataTypes.BOOLEAN, defaultValue: false },
+      tag: { type: DataTypes.STRING, allowNull: false },
       parkId: { type: DataTypes.INTEGER, allowNull: false },
       userId: { type: DataTypes.INTEGER, allowNull: false },
     },
