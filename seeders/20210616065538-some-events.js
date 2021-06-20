@@ -58,9 +58,9 @@ module.exports = {
         },
         {
           imageUrl:
-            "https://whatsupwithamsterdam.com/cms/wp-content/uploads/2019/04/Festivalsamsterdam2019-1024x584.jpg?ezimgfmt=ng:webp/ngcb2",
-          title: "Some event on Noorderpark",
-          description: "Live Music at Noorderpark Amsterdam",
+            "https://static.vecteezy.com/system/resources/previews/000/559/435/non_2x/vector-football-tournament-template-for-sport-event-soccer-jersey-mock-up-team-a-vs-team-b.jpg",
+          title: "Football on Noorderpark - SPORT",
+          description: "SPORT Football at Noorderpark Amsterdam",
           phone: 622222422,
           startDate: "2021-06-23",
           endDate: "2021-06-23",
@@ -78,7 +78,7 @@ module.exports = {
             "https://media.newyorker.com/photos/5fbed85ea6d08c764dcacdea/1:1/w_1364,h_1364,c_limit/Miller-QueensGambit.jpg",
           title: "Queen Gambit Chess Event",
           description:
-            "Cafe Gambito promoting outdoor chess at Westerpark in Amesterdam",
+            "Cafe Gambito promoting outdoor chess at Westerpark in Amesterdam - GAME",
           phone: 622222422,
           startDate: "2021-06-22",
           endDate: "2021-06-22",
@@ -93,9 +93,9 @@ module.exports = {
         },
         {
           imageUrl:
-            "https://d2skuhm0vrry40.cloudfront.net/2020/articles/2020-05-29-11-37/five-of-the-best-game-over-screens-1590748640300.jpg/EG11/resize/1200x-1/five-of-the-best-game-over-screens-1590748640300.jpg",
-          title: "This Event has finished",
-          description: "Finished event at Zuiderpark",
+            "https://mediamodifier.com/images/products/2019_03/1553758369873-2-event-ticket-3d-mockup-generator-template.jpg",
+          title: "Case 1: This Event has finished",
+          description: "Finished event at MEETUP Zuiderpark",
           phone: 622334422,
           startDate: "2021-06-18",
           endDate: "2021-06-18",
@@ -110,12 +110,12 @@ module.exports = {
         },
         {
           imageUrl:
-            "https://d2skuhm0vrry40.cloudfront.net/2020/articles/2020-05-29-11-37/five-of-the-best-game-over-screens-1590748640300.jpg/EG11/resize/1200x-1/five-of-the-best-game-over-screens-1590748640300.jpg",
-          title: "This event has start before today",
-          description: "But will finish tomorrow  at Zuiderpark",
+            "https://mediamodifier.com/images/products/2019_03/1553758369873-2-event-ticket-3d-mockup-generator-template.jpg",
+          title: "Case 2: Start before today and finish tomorrow",
+          description: "But will finish tomorrow. EDUCATION at Zuiderpark",
           phone: 622334422,
-          startDate: "2021-06-18",
-          endDate: "2021-06-20",
+          startDate: "2021-06-19",
+          endDate: "2021-06-21",
           startHour: "11:00",
           lat: 52.055858,
           lng: 4.285709,
@@ -127,12 +127,12 @@ module.exports = {
         },
         {
           imageUrl:
-            "https://d2skuhm0vrry40.cloudfront.net/2020/articles/2020-05-29-11-37/five-of-the-best-game-over-screens-1590748640300.jpg/EG11/resize/1200x-1/five-of-the-best-game-over-screens-1590748640300.jpg",
-          title: "This event has start before today",
-          description: "But will finish today  at Zuiderpark",
+            "https://mediamodifier.com/images/products/2019_03/1553758369873-2-event-ticket-3d-mockup-generator-template.jpg",
+          title: "Case 3: Event start before today and finish today",
+          description: "But will finish today. FITNESS  at Zuiderpark",
           phone: 622334422,
           startDate: "2021-06-18",
-          endDate: "2021-06-19",
+          endDate: "2021-06-20",
           startHour: "11:00",
           lat: 52.055858,
           lng: 4.285709,

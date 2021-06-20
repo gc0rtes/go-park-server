@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon .",
+    "start": "node .",
+    "dev": "npx nodemon .",
     "restartDB": "npm run undo && npm run migrate && npm run seed",
     "undo": "npx sequelize-cli db:migrate:undo:all",
     "migrate": "npx sequelize-cli db:migrate",
