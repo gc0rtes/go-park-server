@@ -1,4 +1,4 @@
-<img style="float: left;" height="32" width="32" src="./src/resources/images/logo.png" /><h2> &nbsp; GoPark!</h2>
+<h2> GoPark!</h2>
 
 <!-- <hr/>
 A web app that helps you find events in the Parks of your city. <br>
